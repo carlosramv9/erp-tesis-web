@@ -1,0 +1,51 @@
+.new-template {
+    &_label {
+        width: 400px !important;
+    }
+}
+
+.add-new-step {
+    background: $ui-03;
+    width: 500px;
+    display: "flex";
+    padding: grid;
+    border: 10px;
+    padding: $space-s $space-xxl;
+    font-size: 14px!important;
+    line-height: 16px!important;
+    font-weight: 700!important;
+    border-radius: 0px;
+    border-color: $primary;
+    transition: all 0.2s!important;
+    position: relative;
+}
+
+.bg-number-rounded {
+    background-color: $primary;
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: 40px;
+    &:hover {
+        background-color: $secondary !important;
+        color: white !important;
+    }
+}
+
+.bg-number-rounded-active {
+    background-color: $secondary;
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: 40px;
+    &:hover{
+        background-color: $primary;
+        color:$secondary
+    }
+}
+
+.icon-task {
+    font-size: 25px;
+    color: $secondary !important;
+    &:hover{
+        color:white !important;
+    }
+}

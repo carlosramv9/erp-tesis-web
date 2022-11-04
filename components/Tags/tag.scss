@@ -1,0 +1,16 @@
+.tag{
+    margin-top: 5px;
+    width: 500px;
+    &_text{
+        background-color: rgba($color: #312f2f, $alpha: 0.2);
+        display: inline-block;
+        border: 1px solid rgb(134, 130, 130);
+        padding: 1px 15px;
+        border-radius: 3px;
+        cursor: default;
+        transition: .2s ease-out;
+        &:hover{
+            background-color: rgba($color: #312f2f, $alpha: 0.4);
+        }
+    }
+}

@@ -1,0 +1,131 @@
+.admin-layout {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    overflow-x: hidden !important;
+    .admin-content {
+        transition: 0.4s;
+        margin-left: $navbar-width;
+        margin-top: $space-xxl !important;
+        position: fixed;
+        width: calc(100vw - $navbar-width);
+        height: calc(100vh - $space-xxl)!important;
+        min-height: calc(100vh - $space-xxl)!important;
+        background-color: $ui-02;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+}
+
+.admin-layout.active {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    .admin-content {
+        transition: 0.4s;
+        margin-left: $navbar-width-active;
+        margin-top: $space-xxl !important;
+        position: fixed;
+        width: calc(100vw - $navbar-width-active);
+        height: calc(100vh - $space-xxl)!important;
+        min-height: calc(100vh - $space-xxl)!important;
+        background-color: $ui-02;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+    }
+}
+
+//Responsive
+@media (max-width: 922px) {
+    .NavbarComponent {
+        .nuser {
+            display: none;
+        }
+        .navbar {
+            display: block !important;
+            width: 100vw !important;
+            height: $header-height !important;
+            position: fixed;
+            background-color: $bg-primary;
+            z-index: 999 !important;
+        }
+        .header-button {
+            display: initial !important;
+            color: $primary;
+            font-size: $space-l;
+            border-color: none !important;
+            &:focus,
+            &:hover,
+            &:active {
+                border-color: none !important;
+                color: $hover-primary;
+            }
+            &:focus {
+                box-shadow: none !important;
+            }
+        }
+        .logo-style {
+            max-height: calc($header-height - $space-s);
+            border-radius: 100px !important;
+            margin-bottom: 0px !important;
+        }
+        .position-image {
+            margin-top: 0px !important;
+            padding: 5px 0 0 15px !important;
+        }
+        .navbar-nav {
+            margin-top: 0px !important;
+            width: 100vw !important;
+        }
+        .btn {
+            font-size: 45px !important;
+            padding: 0 1rem 0 4rem !important;
+        }
+        nav {
+            .nav-link {
+                font-size: 1.25rem;
+                color: white !important;
+                text-align: right;
+                display: flex;
+                // justify-content: center;
+                &:active,
+                &:focus,
+                &:hover {
+                    background-color: $primary;
+                    color: $text-black !important;
+                }
+            }
+        }
+        nav ul {
+            li {
+                visibility: hidden;
+                opacity: 0;
+                color: $primary !important;
+            }
+        }
+        .active-menu {
+            height: 100vh !important;
+        }
+        .active-toggler-menu {
+            li {
+                transition: all 1s;
+                visibility: visible !important;
+                opacity: 1;
+                a {
+                    height: 40px !important;
+                }
+            }
+        }
+    }
+    .admin-content {
+        margin-left: 0 !important;
+        position: fixed;
+        width: 100vw !important;
+        margin-top: $space-xxl;
+        overflow-x: hidden !important;
+        min-height: calc(100vh - $space-xxl);
+    }
+    .active-content {
+        margin-top: $active-header-height !important;
+    }
+}

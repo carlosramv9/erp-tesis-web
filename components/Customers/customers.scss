@@ -1,0 +1,9 @@
+.label{
+    &_custom{
+        font-weight: bold;
+    }
+    &_info{
+        margin-left: $space-xs;
+        font-style: italic;
+    }
+}

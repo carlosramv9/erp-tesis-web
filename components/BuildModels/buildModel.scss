@@ -1,0 +1,45 @@
+.card-select {
+    display: flex;
+    justify-content: center;
+
+    &-model {
+        position: relative;
+        width: 200px;
+        height: 150px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+            border-radius: 10px;
+
+        &:hover{
+            cursor: pointer;
+            background-color: rgba($color: #000000, $alpha: 0.2);
+        }
+
+        &-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+            border: 1px solid rgba($color: #000000, $alpha: 0.2);
+
+            &-icon{
+                font-size: 2rem;
+            }
+        }
+
+        input {
+            opacity: 0;
+        }
+
+        input:checked + &-container {
+            background-color: rgba($color: $primary, $alpha: 1);
+            font-weight: bold;
+        }
+    }
+}

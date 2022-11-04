@@ -1,0 +1,68 @@
+* {
+    box-sizing: border-box;
+    /*overflow: hidden;*/
+}
+
+.login {
+    background-image: url('../../public/login_cover.jpg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    overflow: hidden;
+    &_content {
+        min-height: 100vh;
+        min-width: 100vw;
+        overflow: hidden !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &_card {
+        margin: auto; //$space-xxxl;
+        min-width: 60vw;
+        border-radius: $space-l !important;
+        border-color: 2px solid #201d1e !important;
+        background-color: $ui-03;
+    }
+    &_logo {
+        overflow-y: hidden !important;
+        display: flex;
+        align-items: center !important;
+        border-bottom-left-radius: $space-s !important;
+        border-top-left-radius: $space-l !important;
+        background-color: #201d1e !important;
+    }
+}
+
+.login .card {
+    width: 50vw !important;
+}
+
+input[type=text] {
+    outline: none;
+}
+
+@media screen and (max-width: 950px) {
+    .login {
+        &_logo {
+            height: 30vh;
+            border-bottom-left-radius: 0 !important;
+            border-top-left-radius: 0 !important;
+        }
+    }
+}
+
+@media screen and (max-width: 780px) {
+    * {
+        overflow: scroll;
+    }
+    .login {
+        &_logo {
+            img {
+                border-radius: 0 !important;
+            }
+            height: 20vh;
+            border-radius: 0 !important;
+        }
+    }
+}

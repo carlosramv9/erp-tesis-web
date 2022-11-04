@@ -1,0 +1,268 @@
+//NavBar
+.NavbarComponent {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    .navbar {
+        overflow: auto !important;
+        position: relative;
+        transition: 0.4s !important;
+        z-index: 999 !important;
+        box-shadow: 28px 2px 31px -19px rgba(0, 0, 0, 0.35);
+        -webkit-box-shadow: 28px 2px 31px -19px rgba(0, 0, 0, 0.35);
+        -moz-box-shadow: 28px 2px 31px -19px rgba(0, 0, 0, 0.35);
+        // Hide Scrollbar menu
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        .active-toggler-menu {
+            height: 100% !important;
+        }
+
+        hr {
+            display: none;
+        }
+
+        &.active-menu {
+            hr {
+                display: block;
+            }
+        }
+
+        &-nav {
+            height: 0 !important;
+        }
+
+        &::-webkit-scrollbar {
+            display: none !important;
+        }
+
+        &:hover {
+            width: 100% !important;
+
+            & div div a div .nuser {
+                opacity: 1;
+            }
+        }
+
+        &-container {
+            position: relative;
+            .navbar-subnav {
+                position: absolute;
+                height: 100vh !important;
+                width: 100% !important;
+                background-color: $bg-primary;
+                top: 0;
+                left: -100%;
+                padding: 0 !important;
+                transition: all 0.3s ease-in-out;
+                z-index: 1;
+
+                &.active {
+                    left: 0;
+                }
+            }
+        }
+    }
+
+    .logout-option {
+        z-index: 998 !important;
+        cursor: pointer;
+    }
+
+    .logo-style {
+        width: 10px !important;
+        max-height: 6rem;
+        border-radius: 100px !important;
+    }
+
+    .position-image {
+        margin-top: $space-s !important;
+    }
+
+    .nav {
+        &-item {
+        }
+
+        &-link {
+            font-size: 1rem;
+            display: flex !important;
+            align-items: center !important;
+            width: 100% !important;
+            margin: 0px;
+
+            //height: 80px !important;
+            &:active,
+            &:focus,
+            &:hover {
+                transition: 0s !important;
+                background-color: $primary;
+                color: $text-black !important;
+                border-right: 6px solid $hover-primary !important;
+            }
+        }
+    }
+
+    nav ul {
+        li {
+            color: $primary !important;
+        }
+    }
+
+    .nuser {
+        opacity: 0;
+        font-size: $size-s;
+        color: #aaa;
+    }
+
+    .header-button {
+        display: none;
+        color: $primary;
+        font-size: $space-l;
+        border-color: none !important;
+
+        &:focus,
+        &:hover,
+        &:active {
+            border-color: none !important;
+            color: $hover-primary;
+        }
+
+        &:focus {
+            box-shadow: none !important;
+        }
+    }
+
+    .list__show {
+        transition: height 0.4s;
+        height: 0px;
+    }
+
+    .list__button--click:hover {
+        cursor: pointer;
+    }
+
+    @media (min-width: 922px) {
+        .logout-option {
+            width: $navbar-width !important;
+            position: absolute;
+            bottom: 0 !important;
+        }
+
+        .item-option {
+            width: $navbar-width !important;
+            position: relative;
+            left: 0 !important;
+            padding-left: 3px !important;
+        }
+    }
+}
+
+@media (min-width: 922px) {
+    .NavbarComponent {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+        .navbar {
+            width: $navbar-width;
+            min-height: 100vh;
+            height: 100%;
+            position: fixed;
+            background-color: $bg-primary;
+            overflow-y: auto !important;
+
+            &:hover {
+                width: $navbar-width !important;
+            }
+
+            hr {
+                display: block;
+            }
+
+            &-nav {
+                height: 100% !important;
+            }
+            .nav-link {
+                font-size: 1rem;
+                display: flex !important;
+                align-items: center !important;
+                margin: 0px;
+
+                //height: 80px !important;
+                &:active,
+                &:focus,
+                &:hover {
+                    transition: 0s !important;
+                    background-color: $primary;
+                    color: $text-black !important;
+                    border-right: 6px solid $hover-primary !important;
+                }
+            }
+        }
+
+        .logout-option {
+            z-index: 998 !important;
+            cursor: pointer;
+        }
+
+        .logo-style {
+            width: 10px !important;
+            max-height: 6rem;
+            border-radius: 100px !important;
+        }
+
+        .position-image {
+            margin-top: $space-s !important;
+        }
+
+        nav ul {
+            li {
+                color: $primary !important;
+            }
+        }
+
+        .nuser {
+            opacity: 1;
+        }
+
+        .header-button {
+            display: none;
+            color: $primary;
+            font-size: $space-l;
+            border-color: none !important;
+
+            &:focus,
+            &:hover,
+            &:active {
+                border-color: none !important;
+                color: $hover-primary;
+            }
+
+            &:focus {
+                box-shadow: none !important;
+            }
+        }
+
+        &.active {
+            .navbar {
+                width: $navbar-width-active !important;
+
+                &:hover {
+                    width: $navbar-width !important;
+
+                    & div div a div .nuser {
+                        opacity: 1;
+                    }
+                }
+            }
+            .nuser {
+                opacity: 0;
+            }
+        }
+    }
+}

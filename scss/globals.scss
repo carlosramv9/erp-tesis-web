@@ -1,0 +1,56 @@
+a,
+a:hover,
+a:focus,
+a:active {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.flex-between {
+    display: flex !important;
+    justify-content: space-between !important;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.w-15 {
+    width: 15%;
+}
+
+.rounded-0-right {
+    border-bottom-right-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+}
+
+.rounded-0-left {
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+}
+
+.font-size-icon-table {
+    font-size: 20px !important;
+}
+
+.font-size-8 {
+    font-size: 8px;
+}
+
+.font-size-12 {
+    font-size: 12px;
+}
+
+.font-size-24 {
+    font-size: 24px;
+}
+
+.font-size-32 {
+    font-size: 32px;
+}
+
+@media (min-width:768px) {
+    .w-md-50 {
+        width: 50% !important;
+    }
+}
