@@ -24,7 +24,7 @@ import {
     UPDATE_FILE_SUCCESS,
     UPDATE_FILE_ERROR
 } from '../types'
-import { getPropertiesApi, addPropertiesApi, updatePropertiesApi, deletePropertiesApi, addFilesPropertiesApi, setDefaultImageApi, deleteFileApi, setPublicImageApi, setPublishPropertyApi, getProperty } from '../../api/properties';
+import { getPropertiesApi, addPropertiesApi, updatePropertiesApi, deletePropertiesApi, addFilesPropertiesApi, setDefaultImageApi, deleteFileApi, setPublicImageApi, setPublishPropertyApi, getProperty, uploadDefaultImageApi } from '../../api/properties';
 
 export function getPropertiesAction(page = 1, builder = 'ALL', division = 'ALL', model = 'ALL') {
     return async(dispatch) => {
@@ -99,6 +99,19 @@ export function addFilesPropertiesAction(id, file) {
     return async(dispatch) => {
         try {
             await addFilesPropertiesApi(id, file);
+            const res = await getProperty(id);
+            const response = await getPropertiesApi();
+            dispatch(setPropertySuccess(res));
+            dispatch(addFilePropertySuccess(response))
+        } catch (error) {
+            dispatch(addFilePropertyError(error))
+        }
+    }
+}
+export function uploadDefaultImageAction(id, file) {
+    return async(dispatch) => {
+        try {
+            await uploadDefaultImageApi(id, file);
             const res = await getProperty(id);
             const response = await getPropertiesApi();
             dispatch(setPropertySuccess(res));

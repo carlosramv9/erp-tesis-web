@@ -24,6 +24,7 @@ const BankInformation = () => {
 
     useEffect(() => {
         dispatch(setBankAction(id))
+        
     }, [])
 
     const updateShow = (_show) => setShow(_show)
@@ -40,7 +41,7 @@ const BankInformation = () => {
                             <i className={`bi bi-arrow-return-left mx-3`}></i> {"Regresar"}
                         </span>
                         {
-                            bank.users?.filter(x => x._id === auth.idUser).length > 0 || auth?.role?.role === "ADMIN_ROLE" ?
+                            bank.users?.filter(x => x._id === auth?.idUser).length > 0 || auth?.role?.role === "ADMIN_ROLE" ?
                                 <span className="col d-flex justify-content-end me-2" style={{ fontSize: '1.9rem' }}>
                                     <i className="fa-solid fa-pen-to-square pointer" onClick={() => updateShow(true)}></i>
                                 </span> : null

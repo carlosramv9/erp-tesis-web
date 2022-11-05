@@ -22,7 +22,7 @@ const BankActions = () => {
     return (
         <div className='row text-light bg-dark p-3'>
             {
-                bank.users?.filter(x => x._id === auth.idUser).length > 0
+                bank.users?.filter(x => x._id === auth?.idUser).length > 0
                     ? (
                         <div className='col-md-2 my-2 d-flex justify-content-center align-items-center pointer flex-column' onClick={() => setShowDeposit(true)}>
                             <i className="fa-solid fa-plus" style={{ fontSize: '1.4rem' }}></i>
@@ -43,7 +43,7 @@ const BankActions = () => {
                 <i className="fa-solid fa-handshake" style={{ fontSize: '1.4rem' }}></i>
                 <span>Préstamo</span>
             </div>
-            {bank.users?.filter(x => x._id === auth.idUser).length > -10 ?
+            {bank.users?.filter(x => x._id === auth?.idUser).length > -10 ?
                 <div className='col-md-2 my-2 d-flex justify-content-center align-items-center pointer flex-column' onClick={() => setShowPendients(true)}>
                     <i className="fa-solid fa-triangle-exclamation" style={{ fontSize: '1.4rem' }}></i>
                     <span>Operaciones Pendientes</span>

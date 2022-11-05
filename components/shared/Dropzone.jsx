@@ -3,6 +3,7 @@ import { useDropzone } from 'react-dropzone'
 
 const Dropzone = ({ title, multiple, onChange, className, icon }) => {
     const onDrop = useCallback(acceptedFiles => {
+        console.log('Paso aqui')
         onChange(acceptedFiles)
     }, [])
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
@@ -20,7 +21,6 @@ const Dropzone = ({ title, multiple, onChange, className, icon }) => {
                         <p className={'text-center'} >{title}</p>
                     </>)
             }
-
         </div>
     )
 }

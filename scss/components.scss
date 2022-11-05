@@ -201,6 +201,12 @@
     }
 }
 
+.btn.btn-transparent {
+    padding: 0;
+    border: none;
+    background: transparent;
+}
+
 .table {
     thead {
         padding-left: $space-s;

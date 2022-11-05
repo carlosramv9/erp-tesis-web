@@ -112,6 +112,24 @@ export async function addFilesPropertiesApi(id, property) {
         })
 }
 
+export async function uploadDefaultImageApi(id, property) {
+    const url = `${envUrl}/properties/files/upload/cover/${id}`
+    const token = await getToken();
+    const params = {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            xtoken: token
+        }
+    }
+    return axios.put(url, property, params)
+        .then(response => {
+            return response.data;
+        })
+        .catch(err => {
+            return err;
+        })
+}
+
 export async function setDefaultImageApi(id, property) {
     const url = `${envUrl}/properties/files/setimage/${id}`
     const token = await getToken();

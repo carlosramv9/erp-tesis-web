@@ -20,7 +20,7 @@ const PendantsForm = () => {
     const [show, setShow] = useState(false)
 
     useEffect(() => {
-        getBankPendantsApi(bank._id).then(data => {
+        getBankPendantsApi(bank._id, 'pendient').then(data => {
             setPendants(data.bankMovements)
         })
     }, [bank])
@@ -46,19 +46,19 @@ const PendantsForm = () => {
         <div>
             {
                 pendants?.map((data, index) => (
-                    <div class="card my-2" key={index}>
-                        <div class="card-header">
+                    <div className="card my-2" key={index}>
+                        <div className="card-header">
                             {getTitle(data.type)}
                         </div>
-                        <div class="card-body my-2">
+                        <div className="card-body my-2">
                             <div className="d-flex justify-content-between flex-wrap">
                                 <div>
-                                    <h5 class="card-title">{data.concept}</h5>
-                                    <p class="card-text">{data.description}</p>
-                                    <p class="card-text">De: {data.bank.title}</p>
+                                    <h5 className="card-title">{data.concept}</h5>
+                                    <p className="card-text">{data.description}</p>
+                                    <p className="card-text">De: {data.bank.title}</p>
                                 </div>
                                 <div>
-                                    <h5 class="card-title">{dollarUSLocale.format(data.amount)}</h5>
+                                    <h5 className="card-title">{dollarUSLocale.format(data.amount)}</h5>
                                 </div>
                                 <div className='d-flex flex-column'>
                                     <button className='btn btn-success mb-2' onClick={() => processData(data, 'accepted')} >Aceptar</button>
@@ -82,7 +82,7 @@ const PendantsForm = () => {
                                 }
                             </div>
                         </div>
-                        <div class="card-footer text-muted">
+                        <div className="card-footer text-muted">
                             {new Date(data.createDate).toLocaleString("en-US")}
                         </div>
                     </div>

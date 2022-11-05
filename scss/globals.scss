@@ -49,6 +49,25 @@ a:active {
     font-size: 32px;
 }
 
+.input-transparent {
+    background: transparent;
+    padding: 10px;
+    border-bottom: solid 1px;
+    &:focus {
+        background: transparent;
+        outline: 0 none;
+        border: 0 none;
+    }
+    &:active {
+        outline: 0 none;
+        border: 0 none;
+    }
+}
+
+.transition {
+    transition: all 0.3s ease-in-out;
+}
+
 @media (min-width:768px) {
     .w-md-50 {
         width: 50% !important;

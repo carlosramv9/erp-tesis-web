@@ -2,9 +2,11 @@ import React from 'react'
 import Avatar from './../shared/Avatar';
 import { getUserImage } from '../../api/users';
 import Link from 'next/link';
+import useAuth from './../../hooks/useAuth';
 
 const BankCard = ({ bank }) => {
     const { title, amount, debts, loans, users, _id } = bank
+    const { auth } = useAuth();
 
     let dollarUSLocale = Intl.NumberFormat('en-US', {
         style: "currency",
@@ -12,8 +14,8 @@ const BankCard = ({ bank }) => {
     });
 
     return (
-        <div class="card">
-            <div class="card-body">
+        <div className="card">
+            <div className="card-body">
                 <div className="d-flex mb-3 ms-4">
                     {
                         users?.map((data, index) => (
@@ -23,14 +25,17 @@ const BankCard = ({ bank }) => {
                         ))
                     }
                 </div>
-                <h5 class="card-title">{title}</h5>
-                <p class="card-text">Saldo: <span style={{ color: 'green' }} >{dollarUSLocale.format(amount)}</span></p>
+                <h5 className="card-title">{title}</h5>
+                <p className="card-text">Saldo: <span style={{ color: 'green' }} >{dollarUSLocale.format(amount)}</span></p>
             </div>
-            <Link href={`/banks/info/${_id}`} >
-                <div className="card-footer text-center pointer">
-                    <span>Ingresar</span>
-                </div>
-            </Link>
+            {
+                users?.filter(x => x._id === auth?.idUser).length > 0 || auth?.role?.role === "ADMIN_ROLE" ?
+                    <Link href={`/banks/info/${_id}`} >
+                        <div className="card-footer text-center pointer">
+                            <span>Ingresar</span>
+                        </div>
+                    </Link> : null
+            }
         </div>
     )
 }

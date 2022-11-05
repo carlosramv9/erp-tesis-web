@@ -9,19 +9,23 @@ import Router from "next/router";
 import Required from '../shared/Required'
 import ToolTip from "../shared/ToolTip";
 import useAuth from './../../hooks/useAuth';
+import { getUserInfoListApi } from "../../api/users";
 
 
 export const BankForm = ({ show, bank }) => {
     const dispatch = useDispatch();
     const route = Router
     //const creditsList = useSelector(state => state.bankCredits.bankCredits)
-    const usersList = useSelector(state => state.users.users)
+    const [usersList, setUsersList] = useState([])
     const { auth } = useAuth();
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [users, setUsers] = useState(bank ? [...bank.users?.map(({ _id }) => _id)] : [auth.idUser])
 
     useEffect(() => {
-        
+        getUserInfoListApi()
+            .then(data => {
+                setUsersList(data?.users)
+            })
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
@@ -66,7 +70,6 @@ export const BankForm = ({ show, bank }) => {
 
     const onChangeUser = (indexParent, event) => {
         const newData = users.map((d, index) => index === indexParent ? event.target.value : d);
-        console.log(newData)
         setUsers([...newData]);
     };
 
@@ -118,7 +121,7 @@ export const BankForm = ({ show, bank }) => {
                                 <div className="row mb-3" key={index}>
                                     <div className="col-md-5 d-flex">
                                         <i className="fa-solid fa-circle-minus text-danger pointer mx-2 my-auto" style={{fontSize: '1.3rem'}} onClick={() => onDeleteUser(index)}></i>
-                                        <select className="form-select" value={data} onChangeCapture={(e) => onChangeUser(index, e)} >
+                                        <select className="form-select" value={data} onChange={(e) => onChangeUser(index, e)} >
                                             <option value="">Selecciona Participante...</option>
                                             {usersList?.map((user, i) => {
                                                 return (

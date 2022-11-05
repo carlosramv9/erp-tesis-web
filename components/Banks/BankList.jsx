@@ -28,7 +28,7 @@ export default function BankList() {
             <div className="row">
                 {
                     banksList?.map((data, index) => (
-                        <div className="col-md-4 col-sm-12 col-xl-3" key={index}>
+                        <div className="col-md-4 col-sm-12 col-xl-3 mb-4" key={index}>
                             <BankCard bank={data} ></BankCard>
                         </div>
                     ))

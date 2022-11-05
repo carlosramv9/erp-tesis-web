@@ -93,10 +93,10 @@ export function updateBanksAction(id, bank) {
     }
 }
 
-export function addBankMovementAction(id, bank) {
+export function addBankMovementAction(id, bank, status = 'pendient') {
     return async(dispatch) => {
         try {
-            await addBankMovesApi(bank);
+            await addBankMovesApi(bank, status);
             const response = await getBanksApi();
             const _bank = await getBankApi(id);
             dispatch(addBankSuccess(response))

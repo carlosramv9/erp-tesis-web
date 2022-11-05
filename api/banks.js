@@ -111,8 +111,8 @@ export async function updateBanksApi(id, bank) {
         })
 }
 
-export async function addBankMovesApi(movement) {
-    const url = `${envUrl}/bankMovements`
+export async function addBankMovesApi(movement, status) {
+    const url = `${envUrl}/bankMovements?operation=${status}`
     const token = await getToken();
     const params = {
         headers: {

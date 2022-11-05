@@ -1,6 +1,8 @@
 export const translateType = (type) => {
     switch (type) {
-        case 'loan':
+        case 'reqLoan':
+            return 'Préstamo'
+        case 'giveLoan':
             return 'Préstamo'
         case 'payment':
             return 'Pago'

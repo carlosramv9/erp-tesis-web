@@ -1,5 +1,5 @@
 import React from 'react'
-import { translateType } from './translateType';
+import { translateType } from '../../../utilities/translateLabel';
 
 const MovementNote = ({ movement }) => {
     let dollarUSLocale = Intl.NumberFormat('en-US', {
@@ -9,7 +9,7 @@ const MovementNote = ({ movement }) => {
     return (
         <div>
             <div className='d-flex justify-content-between mt-2 mb-3'>
-                <span>Tipo de Movimineto</span>
+                <span>Tipo de Movimiento</span>
                 <span>{translateType(movement.type)}</span>
             </div>
             <div className='d-flex justify-content-between my-2'>

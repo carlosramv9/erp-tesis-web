@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { useForm } from 'react-hook-form';
 import { getToken } from '../../../api/token';
 
-const PayForm = ({setShow}) => {
+const PayForm = ({ setShow }) => {
     const dispatch = useDispatch();
     const bank = useSelector(state => state.banks.currentBank)
     const { register, formState: { errors }, handleSubmit, getValues } = useForm();
@@ -17,22 +17,19 @@ const PayForm = ({setShow}) => {
 
     const [pendants, setPendants] = useState([])
     const [amount, setAmount] = useState(0)
+    const [isPartial, setIsPartial] = useState(false)
 
     useEffect(() => {
-        getBankPendantsApi(bank._id, 'accepted', 'loan').then(data => {
-            setPendants(data.bankMovements?.filter(x => x.type === 'loan'))
-        })
-    }, [bank])
+        getBankPendantsApi(bank._id, 'accepted', 'reqLoan').then(data => setPendants([...pendants, ...data.bankMovements]))
+        getBankPendantsApi(bank._id, 'complete', 'giveLoan').then(data => setPendants([...pendants, ...data.bankMovements]))
+    }, [])
 
     const processData = async (data, _amount) => {
         const token = getToken();
-        if (token) {
+        if (token && _amount > 0) {
             var body = {
-                type: 'payment'
-            }
-
-            if(_amount){
-                body.parcial = _amount
+                type: 'payment',
+                amount: _amount ? _amount : (data.amount - data.parcialAmount)
             }
 
             dispatch(updateBankMovementAction(bank._id, data._id, body))
@@ -48,35 +45,39 @@ const PayForm = ({setShow}) => {
         <div>
             {
                 pendants?.map((data, index) => (
-                    <div class="card my-2" key={index}>
-                        <div class="card-body my-2">
-                            <div className="d-flex justify-content-between flex-wrap">
-                                <div>
-                                    <h5 class="card-title">{data.concept}</h5>
-                                    <p class="card-text">{data.description}</p>
-                                    <p class="card-text">Para: {data.toBank.title}</p>
+                    <div className="card my-2" key={index}>
+                        <div className="card-body my-2">
+                            <div className="d-flex flex-column flex-wrap">
+                                <div className='flex-between'>
+                                    <div>
+                                        <h5 className="card-title">{data.concept}</h5>
+                                        <p className="card-text">{data.description}</p>
+                                        <p className="card-text">Para: {data.toBank.title}</p>
+                                    </div>
+                                    <div>
+                                        <h5 className="card-title">{dollarUSLocale.format(data.amount - data.parcialAmount)}</h5>
+                                        <p className="card-text fst-italic">Vencimiento: {new Date(data.dueDate).toLocaleString("en-US")}</p>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h5 class="card-title">{dollarUSLocale.format(data.amount - data.parcialAmount)}</h5>
-                                    <p class="card-text fst-italic">Vencimiento: {new Date(data.dueDate).toLocaleString("en-US")}</p>
-                                </div>
-                                <div className='d-flex flex-column align-items-end'>
-                                    <button className='btn btn-success mb-2' onClick={() => processData(data)} >Pagar Total</button>
-                                    <input type="number" className="form-control col-md-3 col-sm-12" name='amount' value={amount} min={0} {...register("amount", {
-                                        required: { value: true }, validate: (data) => {
-                                            if (parseFloat(data) <= 0) {
-                                                return 'No se puede transferir cantidades menores o iguales a 0.'
-                                            }
-                                            return ""
-                                        }
-                                    })}
-                                        onChangeCapture={(e) => setAmount(e.target.value)} />
-                                    <span className='text-danger text-small d-block my-2 fst-italic'>{errors?.amount?.message}</span>
-                                    <button className='btn btn-success ' onClick={() => processData(data, amount)} >Pago Parcial</button>
+                                <div className='flex-between w-100 mt-4'>
+                                    <button className='btn btn-success mb-2' onClick={() => processData(data, (data.amount - data.parcialAmount))} >Pagar Total</button>
+                                    {
+                                        !isPartial ?
+                                            <button className='btn btn-success mb-2' onClick={() => setIsPartial(true)} >Pago Parcial</button> : null
+                                    }
+                                    {
+                                        isPartial ?
+                                            <div className='d-flex'>
+                                                <div className=''>
+                                                    <input type="number" className="form-control input-transparent transition" name='amount' value={amount} min={0} onChange={(e) => setAmount(e.target.value)} />
+                                                </div>
+                                                <button className='btn btn-transparent ms-2' onClick={() => processData(data, amount)}  ><i className="fa-solid fa-paper-plane text-primary" style={{ fontSize: '1.5rem' }}></i></button>
+                                            </div> : null
+                                    }
                                 </div>
                             </div>
                         </div>
-                        <div class="card-footer text-muted">
+                        <div className="card-footer text-muted">
                             {new Date(data.createDate).toLocaleString("en-US")}
                         </div>
                     </div>

@@ -31,9 +31,10 @@ const PropertyInfo = () => {
     const [isMultiple, setIsMultiple] = useState(false)
     const [showAddFile, setshowAddFile] = useState(false)
     const [showEdit, setshowEdit] = useState(false)
+    const [isCover, setIsCover] = useState(false)
 
     const [currentType, setcurrentType] = useState('')
-    const [documents, setDocuments] = useState([{}])
+    const [documents, setDocuments] = useState([])
 
     const _property = useSelector(state => state.properties.currentProperty)
 
@@ -97,20 +98,11 @@ const PropertyInfo = () => {
         }
     };
 
-    useEffect(() => {
-        return () => {
-            console.log(documents)
-            //setShowFiles(true);
-        }
-    }, [documents])
-
-
-    const onChange = (acceptedFiles) => {
+    const onChange = (acceptedFiles, multiple) => {
         Array.from(acceptedFiles)?.map((file, index) => {
             var reader = new FileReader()
-            
+
             reader.onload = async e => {
-                let temp = {}
                 if (file.type === 'image/jpeg' || file.type === 'image/png')
                     setDocuments([...documents, { img: reader.result, name: file.name, data: file }])
                 else if (file.type === 'application/pdf')
@@ -119,13 +111,11 @@ const PropertyInfo = () => {
                     setDocuments([...documents, { img: envUrl + '/excel.png', name: file.name, data: file }])
                 else
                     setDocuments([...documents, { img: envUrl + '/other.png', name: file.name, data: file }])
-                
-
-                await new Promise(r => setTimeout(r, 2000));
             }
             reader.readAsDataURL(file)
         });
-        //setShowFiles(true)        
+        setIsCover(multiple)
+        setShowFiles(true)
     }
 
     return (
@@ -135,11 +125,9 @@ const PropertyInfo = () => {
             </Head>
             <AdminLayout>
                 <div className="row my-3">
-                    <Link href={{ pathname: '/properties', query: { type: _property.type } }} passHref>
-                        <span className="col-md-2 col-sm-12 pointer">
-                            <i className={`bi bi-arrow-return-left mx-3`}></i> {"Regresar"}
-                        </span>
-                    </Link>
+                    <span className="col-md-2 col-sm-12 pointer" onClick={() => router.back()}>
+                        <i className={`bi bi-arrow-return-left mx-3`}></i> {"Regresar"}
+                    </span>
                 </div>
                 <div className="row">
                     <div className="mt-2 col-md-1 col-sm-12">
@@ -159,18 +147,15 @@ const PropertyInfo = () => {
                             className="col-md-5 col-sm-12"
                             title='Arrastra los documentos para expediente aquí, o presiona para cargar'
                             icon="bi bi-cloud-arrow-up-fill"
-                            onChange={onChange}
+                            onChange={(files) => onChange(files, true)}
                         />
                         <Dropzone
                             multiple={false}
                             className="col-md-4 col-sm-12"
                             title='Arrastra una imagen para portada aquí, o presiona para cargar'
                             icon="bi bi-camera2"
-                            onChange={onChange}
+                            onChange={(files) => onChange(files, false)}
                         />
-                        <Modal title="Agregar Archivos" show={showFiles} setShow={setShowFiles}>
-                            <PropertyDocUpload setShow={setShowFiles} files={documents} setFiles={setDocuments} />
-                        </Modal>
                     </div>
 
                     <div className="row ms-1 mt-2">
@@ -208,6 +193,9 @@ const PropertyInfo = () => {
                 {/* <Modal title="Agregar Archivos" show={showAddFile} setShow={setshowAddFile}>
                     <PropertyDocUpload id={id} setShow={setshowAddFile} />
                 </Modal> */}
+                <Modal title="Agregar Archivos" show={showFiles} setShow={setShowFiles}>
+                    <PropertyDocUpload setShow={setShowFiles} files={documents} setFiles={setDocuments} multiple={isCover} />
+                </Modal>
 
                 <Modal title="Actualizar" show={showEdit} setShow={setshowEdit} fullscreen={true}>
                     {
@@ -221,11 +209,6 @@ const PropertyInfo = () => {
             </AdminLayout>
         </div>
     )
-}
-
-PropertyInfo.getInitialProps = async (ctx) => {
-    const { id } = ctx.query;
-    return { id }
 }
 
 export default PropertyInfo

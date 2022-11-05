@@ -2,14 +2,14 @@ import React from 'react'
 
 const SidebarModal = ({children, side, title, id}) => {
   return (
-      <div class={side + " modal fade"} id={id} tabindex="-1" role="dialog" aria-labelledby={id + '0'}>
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                      <h4 class="modal-title" id={id + '0'}>{title}</h4>
+      <div className={side + " modal fade"} id={id} role="dialog" aria-labelledby={id + '0'}>
+		<div className="modal-dialog" role="document">
+			<div className="modal-content">
+				<div className="modal-header">
+					<button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 className="modal-title" id={id + '0'}>{title}</h4>
 				</div>
-				<div class="modal-body">
+				<div className="modal-body">
                       {children}
 				</div>
 
