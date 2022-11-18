@@ -14,3 +14,26 @@ export const translateType = (type) => {
             return ''
     }
 }
+
+export const translateBankOperations = (type) => {
+    switch (type) {
+        case 'pendient':
+            return 'Pendiente'
+        case 'accepted':
+            return 'Aceptado'
+        case 'verifying':
+            return 'Verificando'
+        case 'verified':
+            return 'Verificado'
+        case 'paid':
+            return 'Pagado'
+        case 'complete':
+            return 'Completo'
+        case 'cancelled':
+            return 'Cancelado'
+        case 'refused':
+            return 'Rechazado'
+        default:
+            return ''
+    }
+}

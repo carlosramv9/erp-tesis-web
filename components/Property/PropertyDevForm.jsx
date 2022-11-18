@@ -341,7 +341,7 @@ export const PropertyDevelopmentForm = ({ show, property, type, history, refresh
                     <div className="row m-auto">
                         <div className="mb-3 col-md-12 col-sm-12">
                             <label htmlFor=""><span className="color-primary h5">*</span> Equipamiento</label>
-                            <textarea type="text" className="form-control" rows={1}
+                            <textarea type="text" className="form-control" rows={3}
                                 defaultValue={property ? property.equipment : ''} name='equipment'
                                 {...register("equipment", property ? { required: { value: false } } : { required: { value: true, message: 'The equipment is required' } })}
                             />

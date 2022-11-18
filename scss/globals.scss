@@ -11,6 +11,16 @@ a:active {
     justify-content: space-between !important;
 }
 
+.flex-center {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.flex-end {
+    display: flex !important;
+    justify-content: flex-end !important;
+}
+
 .pointer {
     cursor: pointer;
 }

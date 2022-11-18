@@ -25,7 +25,7 @@ export default function BankList() {
 
     return (
         <>
-            <div className="row">
+            <div className="row justify-content-center">
                 {
                     banksList?.map((data, index) => (
                         <div className="col-md-4 col-sm-12 col-xl-3 mb-4" key={index}>

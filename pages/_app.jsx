@@ -27,6 +27,7 @@ import { getTimeLineListAction } from '../store/actions/timeLineActions';
 import { getArticlesAction } from "../store/actions/articlesAction";
 import Loading from '../components/shared/Loading';
 import { getBanksAction } from "../store/actions/bankActions";
+import { getInvestorsAction } from './../store/actions/investorActions';
 
 
 function MyApp({ Component, pageProps }) {
