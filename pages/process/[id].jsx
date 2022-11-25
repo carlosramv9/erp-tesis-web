@@ -23,6 +23,7 @@ const ProcessInformation = () => {
                 <title>Propiedades - VIVE Sistemas Inmobiliarios</title>
             </Head>
             <AdminLayout>
+                <div className="btn btn-transparent my-3" onClick={() => router.back()}><i className='fa-solid fa-arrow-left'></i>  Regresar</div>
                 <ProcessInfo></ProcessInfo>
             </AdminLayout>
 
