@@ -108,22 +108,6 @@ const DocumentConfig = ({ file, show, setShow, id, status }) => {
                         <button className='btn btn-action-info col-6 my-2' onClick={() => downloadFile(file.file.name)}>Abrir</button>
                         <button className="btn btn-action-warning mx-2 col-6" onClick={() => deleteFile(file._id)}>Eliminar</button>
                     </div>
-                    <div className="row mt-3 justify-content-center">
-                        {
-                            file.file.fileType.includes('image') ?
-                                (
-                                    <>
-                                        <button className="btn btn-action-info mx-2 col-12" onClick={() => setPublicImage(file._id)}>
-                                            {file.isPublic
-                                                ? 'Ocultar'
-                                                : 'Publicar en Galería'
-                                            }
-                                        </button>
-                                    </>
-                                )
-                                : (<div></div>)
-                        }
-                    </div>
                 </div>
             </div>
         </Modal>

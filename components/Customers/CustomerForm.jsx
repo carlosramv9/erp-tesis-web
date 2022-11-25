@@ -127,7 +127,7 @@ export const CustomerForm = ({ show, customer }) => {
                     </select>
                     <span className='text-danger text-small d-block mb-2'>{errors?.type?.message}</span>
                 </div>
-                <div className='d-flex flex-between w-100'>
+                <div className='d-flex flex-between w-100 flex-column flex-sm-row'>
                     <div className='d-flex flex-column w-100 me-2'>
                         <div >
                             <label className='input-label me-2'><span className="color-primary h5">*</span> CURP</label>
@@ -150,7 +150,7 @@ export const CustomerForm = ({ show, customer }) => {
                     }
                 </div>
 
-                <div className='d-flex flex-between w-100 mt-4 mb-4'>
+                <div className='d-flex flex-between w-100 mt-4 mb-4 flex-column flex-sm-row'>
                     <div className='d-flex flex-column w-100 me-2'>
                         <div >
                             <label className='input-label me-2'> Telefono/Celular</label>

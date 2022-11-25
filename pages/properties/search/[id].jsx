@@ -20,6 +20,8 @@ import { PropertyDevelopmentForm } from "../../../components/Property/PropertyDe
 import { PropertySaleForm } from "../../../components/Property/PropertySaleForm";
 import { useUpload } from './../../../hooks/useUpload';
 import Dropzone from './../../../components/shared/Dropzone';
+import PDF from '../../../public/img/pdf.png'
+import Other from '../../../public/img/other.png'
 
 const PropertyInfo = () => {
     const router = useRouter();

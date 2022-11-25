@@ -183,10 +183,10 @@ const DocumentCard = ({ file, idInvestor }) => {
                             'El documento ha sido eliminado del expediente exitosamente.',
                             'success'
                         )
+                        toast.success('Deleted Successful')
                     }
                 })
                 //dispatch(deleteInvestorDocumentAction(idInvestor, id))
-                toast.success('Deleted Successful')
             }
         } catch (error) {
             toast.error('Error')

@@ -11,12 +11,12 @@ const NewTemplateStructure = () => {
     const currentTemplate = useSelector(state => state.templates.currentTemplate);
     const [processTemplate, setProcessTemplate] = useState({name:'', type:'', paymentMethod:''});
     const [steps, setSteps] = useState([]);
-    const [isReady, setIsReady] = useState(false);
+    const [isReady, setIsReady] = useState(true);
     const [refresh, setRefresh] = useState(false);
     useEffect(() => {
         if(processTemplate?.name && processTemplate?.type && processTemplate?.paymentMethod && steps?.length > 0){
-          if(steps.every(step=>step?.tasks?.length > 0)) setIsReady(true);
-          else setIsReady(false)
+          //if(steps.every(step=>step?.tasks?.length > 0)) setIsReady(true);
+          //else setIsReady(false)
         }
     }, [processTemplate, refresh, steps])
     

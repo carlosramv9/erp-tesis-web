@@ -39,14 +39,14 @@ export default function CustomerList() {
 
     return (
         <>
-            <div className='d-flex justify-content-between mb-5'>
-                <div className="d-flex flex-column overflow-hidden flex-md-row w-50">
-                    <div className="input-group me-5">
+            <div className='d-flex justify-content-between mb-5 flex-column flex-md-row'>
+                <div className="d-flex flex-column overflow-hidden flex-md-row">
+                    <div className="input-group me-5 my-2">
                         <span className="input-group-text">Busqueda</span>
                         <input className="form-control search-input" type="text" placeholder="Buscar..." id="example-search-input" onChange={searchHandler} />
                     </div>
 
-                    <div className="input-group me-5">
+                    <div className="input-group me-5 my-2">
                         <span className="input-group-text">{`Tipo`}</span>
                         <select name='role' className='form-select search-input'
                             onChange={e => {
@@ -59,7 +59,7 @@ export default function CustomerList() {
                         </select>
                     </div>
                 </div>
-                <div className="d-flex justify-content-end align-items-center">
+                <div className="d-flex justify-content-end align-items-center my-2">
                     <Paginator totalItems={totalItems} page={page} setPage={setPage} />
                 </div>
             </div>

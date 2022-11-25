@@ -1,5 +1,6 @@
-.loginform{
-    .nav-link{
+.loginform {
+    height: 100%;
+    .nav-link {
         font-size: 1.25rem;
         display: flex !important;
         align-items: center !important;
@@ -8,13 +9,13 @@
         margin: 0px;
         height: 50px !important;
         margin-top: $space-l;
-       &:focus,&:hover{
+        &:focus,
+        &:hover {
             background-color: $primary;
             color: white !important;
         }
     }
-    
-    .active-link{
+    .active-link {
         background-color: $primary !important;
         color: white !important;
     }

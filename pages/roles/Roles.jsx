@@ -22,10 +22,10 @@ const Roles = () => {
                     </div>
                     <div className='ms-1 mt-3'>
                         <div className='row'>
-                            <div className='col-7 overflow-auto'>
+                            <div className='col-md-7 col-sm-12 overflow-auto'>
                                 <RoleList className='overflow-auto'/>
                             </div>
-                            <div className='col-5'>
+                            <div className='col-md-5 cols-sm-12'>
                                 <div className='mt-5'>
                                     {   !isLoadingPriority
                                         ?<RolesPriority />

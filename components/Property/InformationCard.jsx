@@ -10,6 +10,7 @@ const InformationCard = ({ property }) => {
     const envUrl = process.env[process.env.NODE_ENV];
     return (
         <>
+            <h1>{property.title}</h1>
             <h3>Información General</h3>
             <hr />
             <div className='row'>

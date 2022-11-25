@@ -46,8 +46,8 @@ const RolesList = () => {
     return (
         <div>
             <div className='d-flex flex-column'>
-                <div className='d-flex align-items-center flex-between w-100'>
-                    <Select  className='w-50' onChange={ event=>setRoute(event.target.value)}>
+                <div className='d-flex align-items-center flex-between w-100 flex-column flex-md-row'>
+                    <Select  className='w-md-50' onChange={ event=>setRoute(event.target.value)}>
                         <option value={'default'}>Selecciona la Ruta</option>
                         {
                             routesList.map((data, index) =>(
@@ -55,7 +55,7 @@ const RolesList = () => {
                             ))
                         }
                     </Select>
-                    <Paginator totalItems={totalItems} page={page} setPage={setPage}/>
+                    <div className='mt-3'><Paginator totalItems={totalItems} page={page} setPage={setPage} /></div>
                 </div>
         
                 <div>

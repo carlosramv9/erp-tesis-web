@@ -3,6 +3,7 @@ import React from 'react';
 import AdminLayout from '../../layouts/AdminLayout';
 import ProcessHeader from '../../components/Process/ProcessHeader';
 import UnderDevelopment from "../../components/shared/UnderDevelopment";
+import ProcessList from "../../components/Process/ProcessList";
 
 const process = () => {
     return (
@@ -13,11 +14,12 @@ const process = () => {
             <AdminLayout>
                 <div className='mt-4 d-flex flex-column'>
                     <div className='border-bottom'>
-                        <ProcessHeader/>
+                        <ProcessHeader />
                     </div>
+
                     <div className='ms-1 mt-4'>
-                        <UnderDevelopment/>
-                        {/*isLoading ? <Loading/> : <UsersList/>*/}
+                        {/* <UnderDevelopment/> */}
+                        <ProcessList></ProcessList>                        
                     </div>
                 </div>
             </AdminLayout>

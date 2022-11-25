@@ -26,10 +26,9 @@ const LoginForm = () => {
     }
 
     return (
-        <div className='loginform px-2'>
-            <div className='d-flex flex-column justify-content-center loginform_header'>
-                <h1 className='mt-5 text-center'>Bienvenido a</h1>
-                <h1 className='text-center'><b className='color-primary'>Vive</b></h1>
+        <div className='d-flex flex-column justify-content-center loginform px-2'>
+            <div className='d-flex flex-column justify-content-center align-items-center loginform_header'>
+                <h1 className='mt-5 text-center'>Bienvenido</h1>
             </div>
             <div className='loginform_form mt-4 px-1'>
                 <form onSubmit={handleSubmit(processData)}>

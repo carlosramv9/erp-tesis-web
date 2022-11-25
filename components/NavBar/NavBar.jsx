@@ -68,7 +68,6 @@ export default function NavBar() {
                 <div className='navbar-container mt-2 w-100'>
                     <ul className='navbar-nav d-flex flex-column toggler-menu'>
                         <NavItem text={'Dashboards'} route={'/'} icon={'bi bi-clipboard-data'} />
-                        {auth?.role?.readPermissions.includes('banks') || auth?.role?.role === "ADMIN_ROLE" ? <NavItem text={'Bancos'} route={'/banks'} icon={'bi bi-bank'} /> : null}
                         <NavItem text={'Procesos de Venta'} route={'/process'} icon={'bi bi-briefcase'} />
                         {auth?.role?.readPermissions.includes('processTemplates') || auth?.role?.role === "ADMIN_ROLE" ? <NavItem text={'Plantillas de Proceso'} route={'/template'} icon={'bi bi-briefcase'} /> : null}
                         {auth?.role?.readPermissions.includes('customers') || auth?.role?.role === "ADMIN_ROLE" ? <NavItem text={'Clientes'} route={'/customers'} icon={'bi bi-person-badge'} /> : null}
@@ -102,9 +101,6 @@ export default function NavBar() {
                                 <SubNavItem text={'Créditos Bancarios'} route={'/catalogs/bank-credits'} icon={'bi bi-book-half'} />
                             </ul>
                         </li>
-                        {/* {auth?.role?.readPermissions.includes('events') && (<NavItem text={'Linea de Eventos'} route={'/events'} icon={'bi bi-calendar-week'} />)} */}
-                        {auth?.role?.readPermissions.includes('timeLine') || auth?.role?.role === "ADMIN_ROLE" ? <NavItem text={'Historial'} route={'/timeline'} icon={'bi bi-calendar-range'} /> : null}
-                        {auth?.role?.readPermissions.includes('articles') || auth?.role?.role === "ADMIN_ROLE" ? <NavItem text={'Blog'} route={'/blog'} icon={'bi bi-calendar-range'} /> : null}
                         <li className='nav-item w-100' onClick={() => logout()} style={{ cursor: 'pointer' }}>
                             <a className='nav-link text-light item-option'>
                                 <i className="bi bi-box-arrow-left mx-3"></i>

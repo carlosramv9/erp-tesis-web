@@ -28,6 +28,7 @@ import { getArticlesAction } from "../store/actions/articlesAction";
 import Loading from '../components/shared/Loading';
 import { getBanksAction } from "../store/actions/bankActions";
 import { getInvestorsAction } from './../store/actions/investorActions';
+import { getProcessesAction } from "../store/actions/processActions";
 
 
 function MyApp({ Component, pageProps }) {
@@ -52,6 +53,7 @@ function MyApp({ Component, pageProps }) {
       dispatch(getTimeLineListAction());
       dispatch(getArticlesAction());
       dispatch(getBanksAction());
+      dispatch(getProcessesAction());
       setLoading(false);
     }
     // eslint-disable-next-line 

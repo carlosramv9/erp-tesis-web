@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import Modal from '../shared/Modal';
 import InvestorForm from './InvestorForm';
 import InvestorDocsModal from './InvestorDocsModal';
+import { translateDate } from './../../utilities/translateLabel';
 
 const InvestorsList = ({ show }) => {
     const router = useRouter();
@@ -16,6 +17,7 @@ const InvestorsList = ({ show }) => {
         style: "currency",
         currency: "USD",
     });
+    var optionsDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
 
     const [showForm, setShowForm] = useState(false)
     const [showDocs, setShowDocs] = useState(false)
@@ -67,16 +69,16 @@ const InvestorsList = ({ show }) => {
                                         <td>{data.firstName} {data.lastName}</td>
                                         <td>{dollarUSLocale.format(data.amount)}</td>
                                         <td>{data.interest} %</td>
-                                        <td>{new Date(data.createDate).toLocaleString("en-US") ?? ''} </td>
-                                        <td>{new Date(data.finishedDate).toLocaleString("en-US").split(',')[0]} </td>
+                                        <td>{translateDate(data.createDate)} </td>
+                                        <td>{translateDate(data.finishedDate)} </td>
                                         <td>
                                             <div>
-                                                <button
+                                                {/* <button
                                                     className="fa-solid fa-dollar-sign p-2 icon-button me-1"
                                                     data-toggle="tooltip"
                                                     data-placement="top"
                                                     title="Agregar Inversión"
-                                                    onClick={() => { setShowForm(true); setinvestor(data) }}></button>
+                                                    onClick={() => { setShowForm(true); setinvestor(data) }}></button> */}
                                                 <button
                                                     className="fa-solid fa-pencil p-2 icon-button me-1"
                                                     data-toggle="tooltip"
