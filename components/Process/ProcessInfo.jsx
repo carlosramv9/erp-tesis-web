@@ -1,12 +1,50 @@
 import React, { useState } from 'react'
 import PDF from '../../public/img/pdf.png';
 import Image from 'next/image';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ProcessTimelineCard from './ProcessTimelineCard';
+import { useForm } from 'react-hook-form';
+import { getToken } from '../../api/token';
+import { toast } from "react-toastify";
+import { addTaskProcessAction } from '../../store/actions/processActions';
+import AppointmentCard from './appointments/AppointmentCard';
 
 const ProcessInfo = () => {
+  const dispatch = useDispatch();
+  const { register, formState: { errors }, handleSubmit } = useForm();
   const process = useSelector(state => state.processes.currentProcess);
-  const [currentStep, setCurrentStep] = useState(process?.steps?.filter(step => step.index === process.currentStep))
+  const [currentStep, setCurrentStep] = useState(process?.steps?.filter(step => step.index === process.currentStep)[0])
+  const [taskIndex, setTaskIndex] = useState(0)
+
+  const processData = async (data, e) => {
+    const token = getToken();
+    if (token) {
+      console.log(currentStep)
+      if (currentStep?.tasks[taskIndex - 1]) {
+        const _data = new FormData()
+
+        //show(false)
+        toast.success('Updated Successful')
+      }
+      else {
+        const _data = new FormData()
+        switch (process?.processTemplate?.steps[process?.currentStep - 1].tasks[taskIndex]?.type) {
+          case 'Appointment':
+            _data.append('place', 'My New House');
+            _data.append('date', new Date());
+            _data.append('customer', '6380fdcf5742a2c6ca04a0f1');
+            break;
+          case '': break;
+          case '': break;
+        }
+        dispatch(addTaskProcessAction(taskIndex, process?.processTemplate?._id, currentStep?._id, _data))
+        //show(false)
+        toast.success('Uploaded Successful')
+      }
+    } else {
+      toast.error("Information Failed")
+    }
+  }
 
   return (
     <div>
@@ -24,17 +62,20 @@ const ProcessInfo = () => {
         <div className="tasks__info w-75 p-3">
           {
             process?.processTemplate?.steps[process?.currentStep - 1].tasks?.map((task, tid) => {
-              return !currentStep?.tasks?.some(x => x.index === (tid + 1))
-                ? <div key={tid} className="card tasks__info__box mb-3">
-                  <div className='d-flex align-items-center'>
-                    <h4 className='card-title me-2'>{task.name}</h4>
-                    {task.isRequired ? <small className='mb-2'>(Obligatorio)</small> : null}
+              return currentStep?.tasks?.some(x => x.index === task.index)
+                ? <AppointmentCard></AppointmentCard>
+                :
+                <form onSubmit={handleSubmit(processData)} method="post" className=''>
+                  <div key={tid} className="card tasks__info__box mb-3">
+                    <div className='d-flex align-items-center'>
+                      <h4 className='card-title me-2'>{task.name}</h4>
+                      {task.isRequired ? <small className='mb-2'>(Obligatorio)</small> : null}
+                    </div>
+                    <div className="button__row flex-end">
+                      <button className='btn btn-action-primary' onClick={() => setTaskIndex(task.index)}>Iniciar</button>
+                    </div>
                   </div>
-                  <div className="button__row flex-end">
-                    <button className='btn btn-action-primary' disabled={false}>Iniciar</button>
-                  </div>
-                </div>
-                : null;
+                </form>;
             }
             )
           }

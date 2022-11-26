@@ -24,11 +24,12 @@ import {
     deleteDocumentProcessApi,
     addProcessApi,
     deleteProcessApi,
-    updateProcessApi
+    updateProcessApi,
+    addTaskProcessApi
 } from '../../api/process';
 
 export function getProcessesAction(page = 1, limit = 10) {
-    return async(dispatch) => {
+    return async (dispatch) => {
         dispatch(getProcesses())
         try {
             const response = await getProcessListsApi(page, limit);
@@ -40,7 +41,7 @@ export function getProcessesAction(page = 1, limit = 10) {
 }
 
 export function setProcessAction(id = '') {
-    return async(dispatch) => {
+    return async (dispatch) => {
         dispatch(setProcess())
         try {
             if (id) {
@@ -57,7 +58,7 @@ export function setProcessAction(id = '') {
 }
 
 export function addProcessesAction(process) {
-    return async(dispatch) => {
+    return async (dispatch) => {
         try {
             await addProcessApi(process);
             const response = await getProcessListsApi();
@@ -69,7 +70,7 @@ export function addProcessesAction(process) {
 }
 
 export function deleteProcessesAction(id) {
-    return async(dispatch) => {
+    return async (dispatch) => {
         try {
             await deleteProcessApi(id);
             const response = await getProcessListsApi();
@@ -81,7 +82,7 @@ export function deleteProcessesAction(id) {
 }
 
 export function updateProcessesAction(id, process) {
-    return async(dispatch) => {
+    return async (dispatch) => {
         dispatch(setProcess())
         try {
             await updateProcessApi(id, process);
@@ -95,10 +96,10 @@ export function updateProcessesAction(id, process) {
     }
 }
 
-export function addProcessMovementAction(id, process, status = 'pendient') {
-    return async(dispatch) => {
+export function addTaskProcessAction(idTask, process, step, data) {
+    return async (dispatch) => {
         try {
-            await addProcessMovesApi(process, status);
+            await addTaskProcessApi(idTask, process, step, data);
             const response = await getProcessListsApi();
             const _process = await getProcessApi(id);
             dispatch(addProcessSuccess(response))
@@ -110,7 +111,7 @@ export function addProcessMovementAction(id, process, status = 'pendient') {
 }
 
 export function updateProcessMovementAction(idProcess, idMove, data) {
-    return async(dispatch) => {
+    return async (dispatch) => {
         dispatch(setProcess())
         try {
             await updateProcessMovementApi(idMove, data);
@@ -125,7 +126,7 @@ export function updateProcessMovementAction(idProcess, idMove, data) {
 }
 
 export function updateProcessDocumentsAction(idProcess, data) {
-    return async(dispatch) => {
+    return async (dispatch) => {
         dispatch(setProcess())
         try {
             await uploadDocumentsProcessApi(idProcess, data);
@@ -139,7 +140,7 @@ export function updateProcessDocumentsAction(idProcess, data) {
 }
 
 export function deleteProcessDocumentAction(idProcess, document) {
-    return async(dispatch) => {
+    return async (dispatch) => {
         dispatch(setProcess())
         try {
             await deleteDocumentProcessApi(idProcess, document);

@@ -57,6 +57,24 @@ export async function addProcessApi(process) {
         })
 }
 
+export async function addTaskProcessApi(taskIndex, processId, stepId, data) {
+    const url = `${envUrl}/process/addtask/${stepId}/${processId}?index=${taskIndex}`
+    const token = await getToken();
+    const params = {
+        headers: {
+            'Content-Type': 'multipart/form-data',
+            xtoken: token
+        }
+    }
+    return axios.put(url, data, params)
+        .then(response => {
+            return response.data;
+        })
+        .catch(err => {
+            return err;
+        })
+}
+
 export async function deleteProcessApi(id) {
     const url = `${envUrl}/process/${id}`
     const token = await getToken();
