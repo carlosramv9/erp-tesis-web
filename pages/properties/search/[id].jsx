@@ -135,9 +135,7 @@ const PropertyInfo = () => {
                     <div className="mt-2 col-md-1 col-sm-12">
                         <button className="btn btn-action-sm-primary my-2 file_upload w-100" onClick={() => setshowEdit(!showAddFile)}>Editar</button>
                     </div>
-                    <div className="mt-2 col-md-2 col-sm-12">
-                        <button className="btn btn-action-sm-primary my-2 file_upload w-100" onClick={publishHandler}>{!_property.isPublished ? 'Publicar' : 'Despublicar'}</button>
-                    </div>
+                    
                 </div>
                 <div className="container-fluid pt-3">
                     <InformationCard property={_property} />

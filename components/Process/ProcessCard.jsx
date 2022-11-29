@@ -17,7 +17,7 @@ const ProcessCard = ({ process }) => {
                 </div>
                 <div className="card__steps text-center">
                     {
-                        processTemplate?.steps.map((data, index) => <ProcessTimelineCard key={index} step={data} index={index + 1} currentStep={currentStep} />)
+                        <ProcessTimelineCard process={process} readOnly={true} />
                     }
                 </div>
             </div>

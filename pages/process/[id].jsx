@@ -10,7 +10,6 @@ import { setProcessAction } from '../../store/actions/processActions'
 const ProcessInformation = () => {
     const router = useRouter();
     const dispatch = useDispatch();
-    const currentProcess = useSelector(state => state.processes.currentProcess)
 
     useEffect(() => {
         dispatch(setProcessAction(router.query.id))

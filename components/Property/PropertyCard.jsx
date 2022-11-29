@@ -48,6 +48,12 @@ const PropertyCard = ({ property }) => {
                     <Image className="mt-auto" src={image ? image : NoCover} layout='fill' alt="Portada Inmueble" />
                 </div>
                 <div className="container">
+                    {property?.propertyState === 'selled'
+                        ? <h5 style={{ color: '#27ae60' }}><i className='fa-solid fa-check'></i> Vendido</h5>
+                        : null}
+                    {property?.propertyState === 'secluded'
+                        ? <h5 style={{ color: '#f1c40f' }}><i className='fa-solid fa-clock'></i> Apartado</h5>
+                        : null}
                     {
                         type === 'development' ? (
                             <>

@@ -9,7 +9,11 @@ const ProcessList = () => {
 
     return (
         <div>
-            {loading ? <Loading></Loading> : processesList?.map((data, index) => <div key={index} className={'mb-4'}><ProcessCard process={data} /></div>)}
+            {
+                loading
+                    ? <Loading></Loading>
+                    : processesList?.map((data, index) =>
+                        <div key={index} className={'mb-4'}><ProcessCard process={data} /></div>)}
         </div>
     )
 }

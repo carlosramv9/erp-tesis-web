@@ -1,14 +1,14 @@
 import React, { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 
-const Dropzone = ({ title, multiple, onChange, className, icon }) => {
+const Dropzone = ({ title, multiple, onChange, className, icon, limit }) => {
     const onDrop = acceptedFiles => {
         onChange(acceptedFiles)
     }  
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
     return (
         <div {...getRootProps()} className={className + " dropzone"} >
-            <input {...getInputProps()} multiple={multiple} />
+            <input {...getInputProps()} multiple={multiple} accept={limit ? limit : ''} />
             {
                 isDragActive ?
                     (<>

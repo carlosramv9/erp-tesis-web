@@ -5,21 +5,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { getToken } from '../../api/token';
 import { toast } from "react-toastify";
-import { addProcessesAction } from '../../store/actions/processActions';
+import { addProcessAction } from '../../store/actions/processActions';
 
 const CreateProcessForm = ({ show }) => {
     const dispatch = useDispatch();
-    const propertiesList = useSelector(x => x.properties.properties)
+    const properties = useSelector(x => x.properties.properties.filter(x => x.propertyState === 'available'))
     const templatesList = useSelector(x => x.templates.templatesList)
     const customersList = useSelector(x => x.customers.customers)
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-    const [properties, setproperties] = useState(propertiesList.filter(x => x.propertyState === 'available'))
 
     const processData = async (data, e) => {
         const token = getToken();
         if (token) {
-            dispatch(addProcessesAction(data))
+            dispatch(addProcessAction(data))
             show(false)
             toast.success('Uploaded Successful')
         }

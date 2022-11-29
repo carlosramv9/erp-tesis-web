@@ -5,6 +5,9 @@ import {
     GET_PROCESSES,
     GET_PROCESSES_SUCCESS,
     GET_PROCESSES_ERROR,
+    GET_PROPERTIES,
+    GET_PROPERTIES_SUCCESS,
+    GET_PROPERTIES_ERROR,
     UPDATE_PROCESS,
     UPDATE_PROCESS_SUCCESS,
     UPDATE_PROCESS_ERROR,
@@ -25,11 +28,20 @@ import {
     addProcessApi,
     deleteProcessApi,
     updateProcessApi,
-    addTaskProcessApi
+    addTaskProcessApi,
+    finishTaskProcessApi,
+    verifyAppointmentProcessApi,
+    updateTaskProcessApi,
+    nextStepProcessApi,
+    changeStepProcessApi,
+    createCommentStepProcessApi,
+    activeProcessApi,
+    cancelProcessApi
 } from '../../api/process';
+import { getPropertiesApi } from '../../api/properties';
 
 export function getProcessesAction(page = 1, limit = 10) {
-    return async (dispatch) => {
+    return async(dispatch) => {
         dispatch(getProcesses())
         try {
             const response = await getProcessListsApi(page, limit);
@@ -41,7 +53,7 @@ export function getProcessesAction(page = 1, limit = 10) {
 }
 
 export function setProcessAction(id = '') {
-    return async (dispatch) => {
+    return async(dispatch) => {
         dispatch(setProcess())
         try {
             if (id) {
@@ -57,11 +69,13 @@ export function setProcessAction(id = '') {
     }
 }
 
-export function addProcessesAction(process) {
-    return async (dispatch) => {
+export function addProcessAction(process) {
+    return async(dispatch) => {
         try {
             await addProcessApi(process);
             const response = await getProcessListsApi();
+            const properties = await getPropertiesApi(1, 'ALL', 'ALL', 'ALL', 'ALL');
+            dispatch(getPropertySuccess(properties))
             dispatch(addProcessSuccess(response))
         } catch (error) {
             dispatch(addProcessError(error))
@@ -69,20 +83,22 @@ export function addProcessesAction(process) {
     }
 }
 
-export function deleteProcessesAction(id) {
-    return async (dispatch) => {
+export function addTaskProcessAction(idProcess, idTask, process, step, data) {
+    return async(dispatch) => {
         try {
-            await deleteProcessApi(id);
+            await addTaskProcessApi(idTask, process, step, data);
             const response = await getProcessListsApi();
-            dispatch(deleteProcessSuccess(response))
+            const _process = await getProcessApi(idProcess);
+            dispatch(addProcessSuccess(response))
+            dispatch(setProcessSuccess(_process));
         } catch (error) {
-            dispatch(deleteProcessError(true))
+            dispatch(addProcessError(error))
         }
     }
 }
 
-export function updateProcessesAction(id, process) {
-    return async (dispatch) => {
+export function updateProcessAction(id, process) {
+    return async(dispatch) => {
         dispatch(setProcess())
         try {
             await updateProcessApi(id, process);
@@ -96,62 +112,143 @@ export function updateProcessesAction(id, process) {
     }
 }
 
-export function addTaskProcessAction(idTask, process, step, data) {
-    return async (dispatch) => {
+export function updateTaskProcessAction(processId, taskId, process) {
+    return async(dispatch) => {
+        dispatch(setProcess())
         try {
-            await addTaskProcessApi(idTask, process, step, data);
-            const response = await getProcessListsApi();
-            const _process = await getProcessApi(id);
-            dispatch(addProcessSuccess(response))
+            await updateTaskProcessApi(taskId, process);
+            const _process = await getProcessApi(processId);
             dispatch(setProcessSuccess(_process));
+        } catch (error) {
+            dispatch(updateProcessError(true))
+        }
+    }
+}
+
+export function nextStepProcessAction(processId) {
+    return async(dispatch) => {
+        dispatch(setProcess())
+        try {
+            await nextStepProcessApi(processId);
+            const response = await getProcessListsApi();
+            const _process = await getProcessApi(processId);
+            dispatch(setProcessSuccess(_process));
+            dispatch(getProcessSuccess(response))
+        } catch (error) {
+            dispatch(updateProcessError(true))
+        }
+    }
+}
+
+export function changeStepProcessAction(processId, index) {
+    return async(dispatch) => {
+        dispatch(setProcess())
+        try {
+            await changeStepProcessApi(processId, index);
+            const _process = await getProcessApi(processId);
+            dispatch(setProcessSuccess(_process));
+        } catch (error) {
+            dispatch(updateProcessError(true))
+        }
+    }
+}
+
+export function activeProcessAction(processId) {
+    return async(dispatch) => {
+        dispatch(setProcess())
+        try {
+            await activeProcessApi(processId);
+            const response = await getProcessListsApi();
+            const _process = await getProcessApi(processId);
+            dispatch(setProcessSuccess(_process));
+            dispatch(getProcessSuccess(response))
+        } catch (error) {
+            dispatch(updateProcessError(true))
+        }
+    }
+}
+
+export function cancelProcessAction(process) {
+    return async(dispatch) => {
+        try {
+            await cancelProcessApi(process);
+            const response = await getProcessListsApi();
+            const properties = await getPropertiesApi(1, 'ALL', 'ALL', 'ALL', 'ALL');
+            dispatch(getPropertySuccess(properties))
+            dispatch(addProcessSuccess(response))
         } catch (error) {
             dispatch(addProcessError(error))
         }
     }
 }
 
-export function updateProcessMovementAction(idProcess, idMove, data) {
-    return async (dispatch) => {
+export function createCommentStepProcessAction(processId, stepId, comment) {
+    return async(dispatch) => {
         dispatch(setProcess())
         try {
-            await updateProcessMovementApi(idMove, data);
+            await createCommentStepProcessApi(stepId, comment);
+            const _process = await getProcessApi(processId);
+            dispatch(setProcessSuccess(_process));
+        } catch (error) {
+            dispatch(updateProcessError(true))
+        }
+    }
+}
+
+export function verifyAppointmentProcessAction(processId, id) {
+    return async(dispatch) => {
+        dispatch(setProcess())
+        try {
+            await verifyAppointmentProcessApi(id);
+            const _process = await getProcessApi(processId);
+            dispatch(setProcessSuccess(_process));
+        } catch (error) {
+            dispatch(updateProcessError(true))
+        }
+    }
+}
+
+export function deleteProcessesAction(id) {
+    return async(dispatch) => {
+        try {
+            await deleteProcessApi(id);
             const response = await getProcessListsApi();
-            const _process = await getProcessApi(idProcess);
-            dispatch(updateProcessSuccess(response))
-            dispatch(setProcessSuccess(_process));
+            dispatch(deleteProcessSuccess(response))
         } catch (error) {
-            dispatch(updateProcessError(true))
+            dispatch(deleteProcessError(true))
         }
     }
 }
 
-export function updateProcessDocumentsAction(idProcess, data) {
-    return async (dispatch) => {
-        dispatch(setProcess())
+export function finishTaskProcessAction(processId, id) {
+    return async(dispatch) => {
         try {
-            await uploadDocumentsProcessApi(idProcess, data);
-            //dispatch(updateProcessSuccess(response))
-            const _process = await getProcessApi(idProcess);
-            dispatch(setProcessSuccess(_process));
+            await finishTaskProcessApi(id);
+            const response = await getProcessListsApi();
+            const proccess = await getProcessApi(processId);
+            dispatch(setProcessSuccess(proccess));
+            dispatch(deleteProcessSuccess(response))
         } catch (error) {
-            dispatch(updateProcessError(true))
+            dispatch(deleteProcessError(true))
         }
     }
 }
 
-export function deleteProcessDocumentAction(idProcess, document) {
-    return async (dispatch) => {
-        dispatch(setProcess())
-        try {
-            await deleteDocumentProcessApi(idProcess, document);
-            //dispatch(updateProcessSuccess(response))
-            const _process = await getProcessApi(idProcess);
-            dispatch(setProcessSuccess(_process));
-        } catch (error) {
-            dispatch(updateProcessError(true))
-        }
-    }
-}
+//Get Properties
+const getProperties = () => ({
+    type: GET_PROPERTIES,
+    payload: true
+})
+
+const getPropertySuccess = properties => ({
+    type: GET_PROPERTIES_SUCCESS,
+    payload: properties
+})
+
+const getPropertyError = () => ({
+    type: GET_PROPERTIES_ERROR,
+    payload: true
+})
 
 //Get Processes
 const getProcesses = () => ({

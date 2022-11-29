@@ -50,9 +50,6 @@ function MyApp({ Component, pageProps }) {
       dispatch(getTemplatesAction());
       dispatch(getBuildModelsAction());
       dispatch(getBankCreditsAction());
-      dispatch(getTimeLineListAction());
-      dispatch(getArticlesAction());
-      dispatch(getBanksAction());
       dispatch(getProcessesAction());
       setLoading(false);
     }

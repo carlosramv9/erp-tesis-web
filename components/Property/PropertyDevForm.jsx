@@ -115,7 +115,7 @@ export const PropertyDevelopmentForm = ({ show, property, type, history, refresh
                     street: data.street != "" ? data.street : property.street,
                     suburb: data.suburb != "" ? data.suburb : property.suburb,
                     number: data.number != "" ? data.number : property.number,
-                    credits,
+                    credits: credits?.map(x => x.id),
                     attachments: property.attachments,
                     soldBy: data.soldBy,
                     commission
@@ -144,7 +144,7 @@ export const PropertyDevelopmentForm = ({ show, property, type, history, refresh
             else {
                 const _data = {
                     ...data,
-                    credits,
+                    credits: credits?.map(x => x.id),
                     type: typeProperty,
                     businessType: model ? model.type : "",
                     discount: discount,
@@ -171,7 +171,7 @@ export const PropertyDevelopmentForm = ({ show, property, type, history, refresh
                 dispatch(addPropertiesAction(_data))
                 show(false)
                 toast.success('Uploaded Successful')
-                if (externalURL) route.push(externalURL)
+                //if (externalURL) route.push(externalURL)
             }
         } else {
             toast.error("Information Failed")
@@ -458,7 +458,7 @@ export const PropertyDevelopmentForm = ({ show, property, type, history, refresh
                                             <select className="form-select" name='type' id="cboTag" onChange={inputHandler}>
                                                 <option value="">Selecciona el tipo crédito</option>
                                                 {
-                                                    creditsList?.map((e, i) => (<option value={e.name} key={i} >{e.name}</option>))
+                                                    creditsList?.map((e, i) => (<option value={e._id} key={i} >{e.name}</option>))
                                                 }
                                                 {/* <option value="dos">dos</option> */}
                                             </select>
