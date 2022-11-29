@@ -9,15 +9,18 @@ import PendantsForm from './PendantsForm';
 import LoanForm from './LoanForm';
 import PayForm from './PayForm';
 import DepositForm from './DepositForm';
+import InverstorsModal from '../../investors/InverstorsModal';
 
-const BankActions = () => {
+const BankActions = ({show}) => {
     const bank = useSelector(state => state.banks.currentBank)
     const { auth } = useAuth();
+    
     const [showTransfer, setShowTransfer] = useState(false)
     const [showPay, setShowPay] = useState(false)
     const [showLoan, setShowLoan] = useState(false)
     const [showPendients, setShowPendients] = useState(false)
     const [showDeposit, setShowDeposit] = useState(false)
+    const [showInvestors, setShowInvestors] = useState(false)
 
     return (
         <div className='row text-light bg-dark p-3'>
@@ -49,6 +52,10 @@ const BankActions = () => {
                     <span>Operaciones Pendientes</span>
                 </div> : null
             }
+            <div className='col-md-2 my-2 d-flex justify-content-center align-items-center pointer flex-column' onClick={() => show(true)}>
+                <i className="fa-solid fa-user-group" style={{ fontSize: '1.4rem' }}></i>
+                <span>Inversiones</span>
+            </div>
 
             <Modal title="Depositar" show={showDeposit} setShow={setShowDeposit} fullscreen={false} >
                 <DepositForm setShow={setShowDeposit} />
@@ -64,6 +71,9 @@ const BankActions = () => {
             </Modal>
             <Modal title="Pendientes" show={showPendients} setShow={setShowPendients} fullscreen={false} >
                 <PendantsForm setShow={setShowPendients} />
+            </Modal>
+            <Modal title="Inversiones" show={showInvestors} setShow={setShowInvestors} fullscreen={true} >
+                <InverstorsModal setShow={setShowInvestors} />                
             </Modal>
         </div>
     )

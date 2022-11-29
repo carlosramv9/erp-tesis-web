@@ -1,5 +1,5 @@
 import React from 'react'
-import { translateType } from '../../../utilities/translateLabel';
+import { translateBankOperations, translateType } from '../../../utilities/translateLabel';
 
 const MovementNote = ({ movement }) => {
     let dollarUSLocale = Intl.NumberFormat('en-US', {
@@ -38,7 +38,7 @@ const MovementNote = ({ movement }) => {
             </div>
             <div className='d-flex justify-content-between my-2'>
                 <span>Estado</span>
-                <span>{movement.moveStatus}</span>
+                <span>{translateBankOperations(movement.moveStatus)}</span>
             </div>
             <div className='mb-2 mt-3'>
                 <span><b>Observaciones:</b></span>

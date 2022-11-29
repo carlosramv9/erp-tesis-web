@@ -12,6 +12,8 @@ import bankCreditsReducer from './bankCreditsReducer';
 import timeLineReducer from './timeLineReducer';
 import articlesReducer from './articlesReducer';
 import banksReducer from './banksReducer';
+import investorsReducer from './investorsReducer';
+import processesReducer from './processesReducer';
 const reducerCombined = combineReducers({
     customers: customersReducer,
     users: usersReducer,
@@ -25,7 +27,9 @@ const reducerCombined = combineReducers({
     bankCredits: bankCreditsReducer,
     timeLine: timeLineReducer,
     articles: articlesReducer,
-    banks: banksReducer
+    banks: banksReducer,
+    investors: investorsReducer,
+    processes: processesReducer
 })
 
 export default reducerCombined;

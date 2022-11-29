@@ -10,6 +10,7 @@ const InformationCard = ({ property }) => {
     const envUrl = process.env[process.env.NODE_ENV];
     return (
         <>
+            <h1>{property.title}</h1>
             <h3>Información General</h3>
             <hr />
             <div className='row'>
@@ -65,21 +66,10 @@ const InformationCard = ({ property }) => {
                                 </div>
                             </div>
                             <hr />
-                            <span>{property.equipment}</span><br />
+                            <p style={{whiteSpace: 'pre-line'}}>{property.equipment}</p><br />
                         </div>
                     </div>
                 </div>
-                {/* <div className='image_container'>
-                    {
-                        property?.attachments?.map((file, i) => {
-                            if (file.default === true) {
-                                return (<Image src={envUrl + '/' + file.file.name} layout='fill' className='image_container_default' />)
-                            } else {
-                                return (<></>)
-                            }
-                        })
-                    }
-                </div> */}
             </div>
         </>
     )

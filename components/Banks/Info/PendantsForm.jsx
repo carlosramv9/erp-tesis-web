@@ -62,22 +62,23 @@ const PendantsForm = () => {
                                 </div>
                                 <div className='d-flex flex-column'>
                                     <button className='btn btn-success mb-2' onClick={() => processData(data, 'accepted')} >Aceptar</button>
-                                    <button className='btn btn-danger' onClick={() => setShow(true)} >Rechazar</button>
+                                    { !show ? <button className='btn btn-danger' onClick={() => setShow(true)} >Rechazar</button> : null }
                                 </div>
                             </div>
                             <div className="d-flex flex-column">
                                 {
                                     show
                                         ?
-                                        <>
+                                        <div className='mt-4'>
                                             <div className="mb-3 w-100">
                                                 <label htmlFor="" className="form-label">Observaciones</label>
-                                                <textarea className="form-control" id="exampleFormControlTextarea1" name="observations" rows="3" value={observations} onChange={(e) => setObservations(e.target.value)} ></textarea>
+                                                <textarea className="form-control input-transparent" id="exampleFormControlTextarea1" name="observations" rows="1" value={observations} onChange={(e) => setObservations(e.target.value)} ></textarea>
                                             </div>
                                             <div className=''>
-                                                <button className='btn btn-success' onClick={() => processData(data, 'refused')} >Enviar</button>
+                                                <button className='btn btn-success me-2' onClick={() => processData(data, 'refused')} >Enviar</button>
+                                                <button className='btn btn-danger ms-2' onClick={() => setShow(false)} >Cancelar</button>
                                             </div>
-                                        </>
+                                        </div>
                                         : null
                                 }
                             </div>

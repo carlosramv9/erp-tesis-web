@@ -9,10 +9,10 @@ var useAttachmentsProperty = (att) => {
     const [files, setfiles] = useState([])
 
     useEffect(() => {
-        if (attachments ? .length > 0) {
+        if (attachments?.length > 0) {
             var tmp = []
-            categories ? .forEach(e => {
-                var arr = attachments ? .filter(val => val.file.category === e.name)
+            categories?.forEach(e => {
+                var arr = attachments?.filter(val => val.file.category === e.name)
 
                 if (arr.length > 0) {
                     tmp.push({
@@ -21,7 +21,7 @@ var useAttachmentsProperty = (att) => {
                     })
                 }
             })
-            if (attachments ? .filter(val => val.file.category === "undefined").length > 0) {
+            if (attachments?.filter(val => val.file.category === "undefined").length > 0) {
                 setfiles([...tmp, {
                     name: 'S/C',
                     files: attachments.filter(val => val.file.category === "undefined")

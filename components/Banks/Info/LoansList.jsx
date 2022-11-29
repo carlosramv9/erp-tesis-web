@@ -2,7 +2,7 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 import { getBankPendantsApi } from '../../../api/banks';
 import { useSelector } from 'react-redux';
-import { translateType } from '../../../utilities/translateLabel';
+import { translateBankOperations, translateType } from '../../../utilities/translateLabel';
 
 const LoansList = () => {
     const bank = useSelector(state => state.banks.currentBank)
@@ -49,14 +49,30 @@ const LoansList = () => {
                             </tr>
                         )
                         : loans?.map((data, index) => {
+                            let _color = '';
+
+                            if (data.operation === 'entry') _color = 'green';
+                            else if (data.operation === 'exit') _color = 'red';
+                            else if (data.operation === 'pendient') _color = '#f39c12';
+                            else if (data.operation === 'cancelled') _color = 'red';
+                            else if (data.operation === 'refused') _color = 'red';
+
                             return (
-                                <tr key={index} className="" onClick={() => {}}>
-                                    <td>{data.operation === 'entry' ? 'Entrada' : 'Salida'}</td>
+                                <tr key={index} className="" onClick={() => { }}>
+                                    <td>
+                                        <span
+                                            data-toggle="tooltip"
+                                            data-placement="top"
+                                            title={data.operation === 'entry' ? 'Entrada' : 'Salida'}
+                                        >
+                                            <i className={'fa-solid fa-circle'} style={{ color: _color }}></i>
+                                        </span>
+                                    </td>
                                     <td>{new Date(data.createDate).toLocaleString("en-US")} </td>
                                     <td>{data.concept}</td>
                                     <td>{dollarUSLocale.format(data.amount)}</td>
                                     <td className={''}>{dollarUSLocale.format(data.amount - data.parcialAmount)}</td>
-                                    <td>{data.moveStatus}</td>
+                                    <td>{translateBankOperations(data.moveStatus)}</td>
                                 </tr>
                             );
                         })

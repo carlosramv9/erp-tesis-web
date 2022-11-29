@@ -17,12 +17,17 @@
 @import '../components/BuildModels/buildModel.scss';
 @import '../components/TimeLine//timeline.scss';
 @import '../components/Banks//banks.scss';
+@import '../components/investors/investors.scss';
+@import '../components/DashBoard/dashboard.scss';
+@import '../components/Process/process.scss';
 //Layout
 @import '../layouts/AdminLayout/AdminLayout.scss';
 //Pages
 @import '../pages/login/login.scss';
 @import '../pages/properties/properties.scss';
 @import '../pages/catalogs/catalogs.scss';
+@import '../pages/dashboard/dashboard.scss';
+@import '../pages/process/process.scss';
 //External
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import 'bootstrap/dist/css/bootstrap.min.css';

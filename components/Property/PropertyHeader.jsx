@@ -11,7 +11,7 @@ const PropertyHeader = ({ type }) => {
     return (
         <div className='mb-4'>
             <div className='d-flex flex-column'>
-                <div className='d-flex flex-between'>
+                <div className='d-flex flex-between flex-column flex-md-row'>
                     <h2><b></b>Propiedades</h2>
                     <button className='btn btn-action-primary' onClick={() => setShow(!show)}>Nuevo Inmueble</button>
                 </div>

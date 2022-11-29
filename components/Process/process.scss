@@ -1,0 +1,69 @@
+.card {
+    &__steps {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        align-items: center;
+        justify-items: center;
+        gap: 11px;
+        padding-left: 85px;
+        width: 80% !important;
+        &__step {
+            display: flex;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            &--box {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: aliceblue;
+                background: rgb(167, 168, 168);
+                border-radius: 50%;
+                width: 40px !important;
+                height: 40px !important;
+                border: solid 1px #000;
+                &.active {
+                    background: rgb(194, 176, 12);
+                }
+                &.success {
+                    background: rgb(29, 116, 21);
+                }
+                & i {
+                    font-size: 1.5em;
+                }
+            }
+        }
+    }
+    &.process {
+        &:hover {
+            cursor: pointer;
+            border-radius: 15px;
+            background-color: rgba($color: #7ca889, $alpha: 0.6) !important;
+        }
+    }
+}
+
+.add_doc {
+    border-radius: 10px;
+    transition: 0.3s;
+    &:hover {
+        cursor: pointer;
+        background-color: rgba($color: #000000, $alpha: 0.2);
+    }
+}
+
+.comments {
+    min-height: 200px;
+    text-align: left;
+    &__box {
+        overflow-y: scroll;
+    }
+    &__line {
+        &__user {
+            color: blue;
+        }
+    }
+    &__input {
+        margin-top: auto;
+    }
+}

@@ -1,7 +1,7 @@
-const { i18n } = require("./next-i18next.config");
+//const { i18n } = require("./next-i18next.config");
 const path = require("path");
 module.exports = {
-    swcMinify: true,
+    swcMinify: false,
     reactStrictMode: true,
     sassOptions: {
         includePaths: [path.join(__dirname, "scss")],

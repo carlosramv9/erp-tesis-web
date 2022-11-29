@@ -10,6 +10,7 @@ import Required from '../shared/Required'
 import ToolTip from "../shared/ToolTip";
 import useAuth from './../../hooks/useAuth';
 import { getUserInfoListApi } from "../../api/users";
+import Swal from 'sweetalert2'
 
 
 export const BankForm = ({ show, bank }) => {
@@ -55,11 +56,32 @@ export const BankForm = ({ show, bank }) => {
     const deleteHandler = async () => {
         const token = await getToken();
         if (token) {
+            let confirmation = await Swal.fire({
+                title: `¿Desea eliminar '${bank.title}'?`,
+                text: "Esta operación no podra ser revertida!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Eliminar',
+                cancelButtonText: 'Cancelar'
+            })
+            if (confirmation.isConfirmed) {
+                dispatch(deleteBanksAction(bank._id))
+                show(false)
+                Swal.fire(
+                    'Eliminado!',
+                    `El banco ${bank.title} ha sido eliminado exitosamente.`,
+                    'success'
+                )
+                route.back();
+                toast.success('Deleted Successful')
+            }
+            if (confirmation.isDismissed) {
+                toast.error('Delete Cancelled')
+            }
 
-            dispatch(deleteBanksAction(bank._id))
-            show(false)
-            toast.success('Deleted Successful')
-            route.back();
+
 
         } else {
             toast.error("Information not found")
@@ -119,8 +141,8 @@ export const BankForm = ({ show, bank }) => {
                         users?.map((data, index) => {
                             return (
                                 <div className="row mb-3" key={index}>
-                                    <div className="col-md-5 d-flex">
-                                        <i className="fa-solid fa-circle-minus text-danger pointer mx-2 my-auto" style={{fontSize: '1.3rem'}} onClick={() => onDeleteUser(index)}></i>
+                                    <div className="col-12 d-flex">
+                                        <i className="fa-solid fa-circle-minus text-danger pointer mx-2 my-auto" style={{ fontSize: '1.3rem' }} onClick={() => onDeleteUser(index)}></i>
                                         <select className="form-select" value={data} onChange={(e) => onChangeUser(index, e)} >
                                             <option value="">Selecciona Participante...</option>
                                             {usersList?.map((user, i) => {

@@ -55,7 +55,7 @@ const BankMovements = () => {
                                 let _class = '';
                                 let _color = '';
 
-                                if(data.operation === 'entry'){
+                                if (data.operation === 'entry') {
                                     _class = 'fa-solid fa-arrow-down';
                                     _color = 'green';
                                 } else if (data.operation === 'exit') {
@@ -64,6 +64,12 @@ const BankMovements = () => {
                                 } else if (data.operation === 'pendient') {
                                     _class = 'fa-solid fa-minus';
                                     _color = '#f39c12';
+                                } else if (data.operation === 'cancelled') {
+                                    _class = 'fa-solid fa-cancel';
+                                    _color = 'red';
+                                } else if (data.operation === 'refused') {
+                                    _class = 'fa-solid fa-xmark';
+                                    _color = 'red';
                                 }
 
                                 return (

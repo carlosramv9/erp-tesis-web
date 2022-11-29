@@ -12,19 +12,20 @@ import BankMovements from './../../../components/Banks/Info/BankMovements';
 import Modal from '../../../components/shared/Modal';
 import { BankForm } from './../../../components/Banks/BankForm';
 import useAuth from './../../../hooks/useAuth';
+import InverstorsModal from '../../../components/investors/InverstorsModal';
 const BankInformation = () => {
     const router = useRouter();
     const dispatch = useDispatch();
     const isLoading = useSelector(state => state.banks.loadingSetBank)
     const bank = useSelector(state => state.banks.currentBank)
-    const {auth} = useAuth();
+    const { auth } = useAuth();
 
     const { id } = router.query;
     const [show, setShow] = useState(false)
+    const [showInvestors, setShowInvestors] = useState(false)
 
     useEffect(() => {
         dispatch(setBankAction(id))
-        
     }, [])
 
     const updateShow = (_show) => setShow(_show)
@@ -52,9 +53,9 @@ const BankInformation = () => {
                             isLoading ? (<Loading />) : (<CardInfo />)
                         }
                     </div>
-                    <BankActions></BankActions>
+                    <BankActions show={setShowInvestors} ></BankActions>
                     <div className='ms-1 mt-4'>
-                        <BankMovements></BankMovements>
+                        { showInvestors ? <InverstorsModal setShow={setShowInvestors} ></InverstorsModal> : <BankMovements></BankMovements> }
                     </div>
                 </div>
 

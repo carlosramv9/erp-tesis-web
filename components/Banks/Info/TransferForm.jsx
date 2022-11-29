@@ -6,11 +6,14 @@ import { getUserInfoListApi } from '../../../api/users'
 import { useDispatch, useSelector } from 'react-redux';
 import Required from '../../shared/Required';
 import { addBankMovementAction } from '../../../store/actions/bankActions';
+import { useRouter } from 'next/router';
 
 const TransferForm = ({ setShow }) => {
+    const router = useRouter();
+    const { id } = router.query;
     const dispatch = useDispatch();
     const bank = useSelector(state => state.banks.currentBank)
-    const banksList = useSelector(state => state.banks.banks)
+    const banksList = useSelector(state => state.banks.banks.filter(x => x._id !== id))
     const { register, formState: { errors }, handleSubmit, getValues } = useForm();
     const [usersList, setUsersList] = useState([])
     const [balance, setBalance] = useState(bank.amount)
