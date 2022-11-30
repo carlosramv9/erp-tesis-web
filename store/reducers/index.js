@@ -10,9 +10,6 @@ import buildModelsReducer from './buildModelsReducer';
 import templatesReducer from './templatesReducer';
 import bankCreditsReducer from './bankCreditsReducer';
 import timeLineReducer from './timeLineReducer';
-import articlesReducer from './articlesReducer';
-import banksReducer from './banksReducer';
-import investorsReducer from './investorsReducer';
 import processesReducer from './processesReducer';
 const reducerCombined = combineReducers({
     customers: customersReducer,
@@ -26,9 +23,6 @@ const reducerCombined = combineReducers({
     templates: templatesReducer,
     bankCredits: bankCreditsReducer,
     timeLine: timeLineReducer,
-    articles: articlesReducer,
-    banks: banksReducer,
-    investors: investorsReducer,
     processes: processesReducer
 })
 

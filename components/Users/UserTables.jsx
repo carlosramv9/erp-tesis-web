@@ -18,9 +18,9 @@ const UserTables = () => {
             <div>
 
             </div>
-              {currentUserTab == 'process' && <CurrentUserProcess/>}
+              {/* {currentUserTab == 'process' && <CurrentUserProcess/>} */}
               {currentUserTab == 'files' && <CurrentUserAttachments/>}
-              {currentUserTab == 'movements' && <CurrentUserMovements/>}
+              {/* {currentUserTab == 'movements' && <CurrentUserMovements/>} */}
           </div>
       </div>
 

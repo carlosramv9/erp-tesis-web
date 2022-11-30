@@ -6,6 +6,8 @@ import PDF from "../../../public/img/pdf.png";
 import OTHER from "../../../public/img/other.png";
 
 const DocumentCard = ({ file }) => {
+
+    const envUrl = process.env[process.env.NODE_ENV];
     const [data, setData] = useState(OTHER)
     const [info, setInfo] = useState({})
 
@@ -43,12 +45,14 @@ const DocumentCard = ({ file }) => {
     }, [])
 
     return (
-        <div className='d-flex flex-column align-items-center justify-content-center'>
-            <div style={{ position: 'relative', minWidth: '50px', minHeight: '50px', maxWidth: '150px', maxHeight: '150px' }}>
-                <Image src={data} layout={'fill'} objectFit={'contain'}></Image>
+        <a href={`${envUrl}/utils/attachment/${file?._id ? file?._id : file }`} target='_blank'>
+            <div className='d-flex flex-column align-items-center justify-content-center'>
+                <div style={{ position: 'relative', minWidth: '50px', minHeight: '50px', maxWidth: '150px', maxHeight: '150px' }}>
+                    <Image src={data} layout={'fill'} objectFit={'contain'}></Image>
+                </div>
+                <div className='text-center'><b>{info?.category}</b></div>
             </div>
-            <div className='text-center'><b>{info?.category}</b></div>
-        </div>
+        </a>
     )
 }
 

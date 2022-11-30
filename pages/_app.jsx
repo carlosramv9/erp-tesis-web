@@ -23,11 +23,7 @@ import { getDivisionsAction } from '../store/actions/divisionActions';
 import { getBuildModelsAction } from '../store/actions/buildModelActions';
 import { getTemplatesAction } from '../store/actions/templatesActions';
 import { getBankCreditsAction } from '../store/actions/bankCreditActions';
-import { getTimeLineListAction } from '../store/actions/timeLineActions';
-import { getArticlesAction } from "../store/actions/articlesAction";
 import Loading from '../components/shared/Loading';
-import { getBanksAction } from "../store/actions/bankActions";
-import { getInvestorsAction } from './../store/actions/investorActions';
 import { getProcessesAction } from "../store/actions/processActions";
 
 
