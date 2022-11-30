@@ -8,7 +8,7 @@ module.exports = {
     },
     env: {
         development: "http://localhost:8010",
-        production: "https://server.vivefeliz.mx",
+        production: "https://server.carlostesis.xyz",
         ACCESS_TOKEN: "accessToken",
         routes: [{
                 name: "Usuarios",
