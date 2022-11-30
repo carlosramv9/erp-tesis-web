@@ -27,10 +27,10 @@ const CreateTaskForm = ({steps, setSteps, selectedStep, setSelectedStep, setShow
                     <label className='input-label'>Tipo de Tarea</label>
                     <select className="form-select mt-2" aria-label="Default select example" name='type' {...register("type", { required: { value: true, message: 'El tipo de tarea es obligatoria' }, minLength: { value: 1, message: "Min lenght 2"}})}>
                             <option value=''>Selecciona el tipo de tarea</option>
-                            <option value="attachment">Documento</option>
-                            <option value="appointment">Cita</option>
-                            <option value="contract">Contrato</option>
-                            <option value="dataUpdate">Actualizacion de Informacion</option>
+                            <option value="Attachment">Documento</option>
+                            <option value="Appointment">Cita</option>
+                            <option value="Contract">Contrato</option>
+                            {/* <option value="dataUpdate">Actualizacion de Informacion</option> */}
                     </select>
                     <span className='text-danger text-small d-block mb-2'>{errors?.type?.message}</span>
                 </div>

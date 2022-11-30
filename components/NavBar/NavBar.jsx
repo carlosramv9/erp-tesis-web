@@ -83,8 +83,6 @@ export default function NavBar() {
                             <ul className="list__show">
                                 {auth?.role?.readPermissions.includes('pDevelopment') || auth?.role?.role === "ADMIN_ROLE" ? <SubNavItem text={'Desarrollos'} route={'/properties'} query={'development'} icon={'bi bi-building'} /> : null}
                                 <SubNavItem text={'Venta'} route={'/properties'} query={'sale'} icon={'bi bi-building'} />
-                                <SubNavItem text={'Renta'} route={'/properties'} query={'rent'} icon={'bi bi-building'} />
-                                <SubNavItem text={'Inversion'} route={'/properties'} query={'business'} icon={'bi bi-building'} />
                             </ul>
                         </li>
                         {/* <NavItem text={'Catalogos'} route={'/catalogs'} icon={'bi bi-journal-text'}/> */}

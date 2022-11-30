@@ -89,7 +89,7 @@ export default function CustomerList() {
                                             data-placement="top"
                                             title="Editar Cliente"
                                             onClick={() => { setShow(true); setcustomer(data) }}></button >
-                                        {
+                                        {/* {
                                             data?.type === 'Seller'
                                                 ? (<button
                                                     className="bi bi-house-fill icon-button me-1"
@@ -98,7 +98,7 @@ export default function CustomerList() {
                                                     title="Crear nueva propiedad"
                                                     onClick={() => { setshowProp(true); setcustomer(data) }}></button >)
                                                 : (<></>)
-                                        }
+                                        } */}
                                     </div>
                                 </td>
                             </tr>

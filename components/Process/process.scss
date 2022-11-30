@@ -67,3 +67,100 @@
         margin-top: auto;
     }
 }
+
+.boxImagesToLoad {
+    position: relative;
+    width: 120px;
+    height: 90px;
+    overflow: hidden;
+    border-radius: 15px;
+    &_courtain {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: all 0.4s ease;
+        position: absolute;
+        top: -100%;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+        p {
+            padding: 5px;
+            overflow: hidden;
+            height: 65%;
+        }
+        &_delete {
+            position: absolute;
+            bottom: 0;
+            border: none;
+            width: 100%;
+            background-color: transparent;
+            color: white;
+            transition: all 0.3s ease;
+            &:hover {
+                background-color: red;
+            }
+        }
+        &_delete-sm {
+            border: none;
+            width: 100%;
+            background-color: transparent;
+            transition: all 0.3s ease;
+            color: red;
+        }
+    }
+    &:hover &_courtain {
+        cursor: pointer;
+        top: 0;
+    }
+}
+
+.boxImagesLoaded {
+    position: relative;
+    width: 100%;
+    height: 120px;
+    overflow: hidden;
+    border-radius: 15px;
+    box-sizing: border-box;
+    &_courtain {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        transition: all 0.4s ease;
+        position: absolute;
+        top: -100%;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+        p {
+            padding: 5px;
+            overflow: hidden;
+            height: 65%;
+        }
+        &_delete {
+            position: absolute;
+            bottom: 0;
+            border: none;
+            width: 100%;
+            background-color: transparent;
+            color: white;
+            transition: all 0.3s ease;
+            &:hover {
+                background-color: red;
+            }
+        }
+        &_delete-sm {
+            border: none;
+            width: 100%;
+            background-color: transparent;
+            transition: all 0.3s ease;
+            color: red;
+        }
+    }
+    &:hover &_courtain {
+        cursor: pointer;
+        top: 0;
+    }
+}
