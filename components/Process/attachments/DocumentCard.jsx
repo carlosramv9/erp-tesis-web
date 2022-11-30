@@ -45,7 +45,7 @@ const DocumentCard = ({ file }) => {
     }, [])
 
     return (
-        <a href={`${envUrl}/utils/attachment/${file?._id ? file?._id : file }`} target='_blank'>
+        <a href={`${envUrl}/utils/attachment/${file?._id ? file?._id : file}`} target='_blank' rel='noreferrer'>
             <div className='d-flex flex-column align-items-center justify-content-center'>
                 <div style={{ position: 'relative', minWidth: '50px', minHeight: '50px', maxWidth: '150px', maxHeight: '150px' }}>
                     <Image src={data} layout={'fill'} objectFit={'contain'}></Image>

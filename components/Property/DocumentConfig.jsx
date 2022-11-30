@@ -105,7 +105,7 @@ const DocumentConfig = ({ file, show, setShow, id, status }) => {
                                 )
                                 : (<div></div>)
                         }
-                        <button className='btn btn-action-info col-6 my-2'><a href={`${envUrl}/utils/attachment/${file?.file?._id}`} target={'_blank'}>Abrir</a></button>
+                        <button className='btn btn-action-info col-6 my-2'><a href={`${envUrl}/utils/attachment/${file?.file?._id}`} target={'_blank'} rel='noreferrer'>Abrir</a></button>
                         <button className="btn btn-action-warning mx-2 col-6" onClick={() => deleteFile(file._id)}>Eliminar</button>
                     </div>
                 </div>
